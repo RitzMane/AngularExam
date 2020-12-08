@@ -1,0 +1,25 @@
+<h1>Welcome to ProductCRUD Application</h1>
+<a routerLink="ptab">Display table</a><br>
+<a routerLink="plist">Display list</a><br>
+<hr>
+<form #frm="ngForm" (ngSubmit)="submitForm(frm.value)">
+   Id :<input type="text" #id="ngModel" name="id" ngModel required><br>
+   <div *ngIf="id.errors && (id.dirty||id.touched)">
+       Pls enter id it cannot be empty
+       
+   </div>
+   Name: <input type="text" #nm="ngModel" name="nm" ngModel required minlength="3"><br>
+   <div *ngIf="nm.errors && (nm.dirty  || nm.touched)">
+       <div [hidden]="!nm.errors.required">
+        Pls enter name it cannot be empty
+       </div>
+       <div [hidden]="!nm.errors.minlength">
+        Pls enter name and minlength should be 3
+       </div>
+   </div>
+   <button type="submit" name="btn" [disabled]="!frm.valid">Submit</button>
+ 
+</form>
+
+<hr>
+<router-outlet></router-outlet> 
